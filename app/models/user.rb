@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :todos, dependent: :destroy
-  has_many :users, through: :todos
+  has_many :types, through: :todos
 
-  validates :name, presence: true
+  validates :user_name, presence: true
 end

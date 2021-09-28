@@ -1,7 +1,7 @@
 class CreateUsers < ActiveRecord::Migration[6.1]
   def change
-    create_table :employees do |t|
-      t.string :usr_name
+    create_table :users do |t|
+      t.string :user_name
 
       t.timestamps
     end

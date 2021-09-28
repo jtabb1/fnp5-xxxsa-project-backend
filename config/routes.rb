@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :trainings, only: [:index, :show, :update, :create]
-  resources :tasks, only: [:index, :show, :create, :update, :destroy]
-  resources :employees, only: [:index, :show, :create, :update, :destroy]
+  resources :todos, only: [:index, :show, :update, :create, :destroy]
+  resources :types, only: [:index]
+  resources :users, only: [:index, :show, :create, :update, :destroy]
 end

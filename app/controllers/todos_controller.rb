@@ -4,12 +4,20 @@ class TodosController < ApplicationController
   def index
     render json:  
       Todo
-        .select('types.type_name')
-        .select('users.name')
-        .joins(:user, :type)
-        .order("type_name")
+        .all
   end
-  
+
+  def show
+    todo = find_todo
+    render json: todo
+  end
+
+  def destroy
+    todo = find_todo
+    todo.destroy
+    head :no_content
+  end
+
   def create
     todo = Todo.create!(todo_params)
     render json: todo.type, status: :created
@@ -18,7 +26,11 @@ class TodosController < ApplicationController
   private
 
   def todo_params
-    params.permit(:user_id, :type_id)
+    params.permit(:user_id, :type_id, :todo_name, :todo_notes)
+  end
+  
+  def find_todo
+    Todo.find(params[:id])
   end
 
   def render_unprocessable_entity_response(exception)

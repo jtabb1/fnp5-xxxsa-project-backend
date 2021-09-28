@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   def index
-    render json: User.order("name")
+    render json: User.order("user_name")
   end
 
   def show
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     user.destroy
     head :no_content
   end
-
+  
   def create
     user = User.create!(user_params)
     render json: user, status: :created
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:name)
+    params.permit(:user_name)
   end
   
   def find_user

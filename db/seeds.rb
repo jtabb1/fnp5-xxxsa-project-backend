@@ -1,6 +1,6 @@
 puts "🌱 Seeding users..."
-userx01 = User.create!(name: 'Jago')
-userx02 = User.create!(name: 'Stella')
+userx01 = User.create!(user_name: 'Jago')
+userx02 = User.create!(user_name: 'Stella')
  
 puts "🌱 Seeding types..."
 typex01 = Type.create!(type_name: 'coding')

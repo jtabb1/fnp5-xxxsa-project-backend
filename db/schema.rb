@@ -10,35 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_12_000003) do
+ActiveRecord::Schema.define(version: 2021_09_27_000003) do
 
-  create_table "employees", force: :cascade do |t|
-    t.string "name"
-    t.integer "public_id"
+  create_table "todos", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "type_id", null: false
+    t.string "todo_name"
+    t.string "todo_notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["type_id"], name: "index_todos_on_type_id"
+    t.index ["user_id"], name: "index_todos_on_user_id"
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string "type_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.string "task_name"
-    t.integer "public_id"
+  create_table "users", force: :cascade do |t|
+    t.string "user_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "trainings", force: :cascade do |t|
-    t.integer "employee_id", null: false
-    t.integer "task_id", null: false
-    t.integer "trainer"
-    t.integer "initial_production_rate"
-    t.integer "initial_error_rate"
-    t.string "error_rate_in_english"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["employee_id"], name: "index_trainings_on_employee_id"
-    t.index ["task_id"], name: "index_trainings_on_task_id"
-  end
-
-  add_foreign_key "trainings", "employees"
-  add_foreign_key "trainings", "tasks"
+  add_foreign_key "todos", "types"
+  add_foreign_key "todos", "users"
 end

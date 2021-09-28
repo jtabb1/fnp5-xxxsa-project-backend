@@ -1,4 +1,4 @@
-class Task < ApplicationRecord
+class Type < ApplicationRecord
   has_many :todos
   has_many :users, through: :todos
 

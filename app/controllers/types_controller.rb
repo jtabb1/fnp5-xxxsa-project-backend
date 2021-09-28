@@ -1,45 +1,45 @@
-class TasksController < ApplicationController
+class TypesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   def index
-    render json: Task.all
+    render json: Type.all
   end
 
   def show
-    task = find_task
-    render json: task
+    type = find_type
+    render json: type
   end
 
   def update
-    task = find_task
-    task.update(task_params)
-    render json: task
+    type = find_type
+    type.update(type_params)
+    render json: type
   end
 
   def destroy
-    task = find_task
-    task.destroy
+    type = find_type
+    type.destroy
     head :no_content
   end
 
   def create
-    task = Task.create!(task_params)
-    render json: task, status: :created
+    type = Type.create!(type_params)
+    render json: type, status: :created
   end
 
   private
 
-  def task_params
-    params.permit(:task_name, :public_id)
+  def type_params
+    params.permit(:type_name, :public_id)
   end
   
-  def find_task
-    Task.find(params[:id])
+  def find_type
+    Type.find(params[:id])
   end
 
   def render_not_found_response
-    render json: { error: "Task not found" }, status: :not_found
+    render json: { error: "Type not found" }, status: :not_found
   end
 
   def render_unprocessable_entity_response(exception)

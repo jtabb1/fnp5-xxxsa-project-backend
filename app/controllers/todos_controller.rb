@@ -12,6 +12,12 @@ class TodosController < ApplicationController
     render json: todo
   end
 
+  def update
+    todo = find_todo
+    todo.update(todo_params)
+    render json: todo
+  end
+
   def destroy
     todo = find_todo
     todo.destroy

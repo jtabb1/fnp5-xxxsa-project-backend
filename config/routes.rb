@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :types, only: [:index]
   resources :users, only: [:index, :show, :create, :update, :destroy]
 
+  # Draft below:
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"

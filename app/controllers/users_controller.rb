@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   def user_params
     # Drafted modfication of line below from Flatiron example:
-    params.permit(:user_name, :password, :password_confirmation)
+    params.permit(:username, :password, :password_confirmation)
   end
   
   def find_user

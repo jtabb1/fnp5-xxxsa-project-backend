@@ -1,4 +1,4 @@
 class UserWithTypesSerializer < ActiveModel::Serializer
-  attributes :id, :user_name
+  attributes :id, :username
   has_many :types
 end

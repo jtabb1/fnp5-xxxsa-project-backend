@@ -1,29 +1,34 @@
 class UsersController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+
+  # Draft line deletion:
+  # rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   skip_before_action :authorize, only: :create # <-Drafted line from Fn example
 
-  def index
-    render json: User.order("id")
-  end
+  # Draft method deletion:
+  # def index
+  #   render json: User.order("id")
+  # end
 
   def show
-    user = find_user
+    # Draft deletion -> user = find_user
     # Drafted modfication of line below from Flatiron example:
     render json: @current_user, serializer: UserWithTodosSerializer
   end
 
-  def update
-    user = find_user
-    user.update(user_params)
-    render json: user
-  end
+  # Draft method deletion:
+  # def update
+  #   user = find_user
+  #   user.update(user_params)
+  #   render json: user
+  # end
 
-  def destroy
-    user = find_user
-    user.destroy
-    head :no_content
-  end
+  # Draft method deletion:
+  # def destroy
+  #   user = find_user
+  #   user.destroy
+  #   head :no_content
+  # end
   
   # Drafted method from Flatiron example:
   def create
@@ -38,14 +43,16 @@ class UsersController < ApplicationController
     # Drafted modfication of line below from Flatiron example:
     params.permit(:username, :password, :password_confirmation)
   end
-  
-  def find_user
-    User.find(params[:id])
+
+  # Draft method deletion:
+  # def find_user
+  #   User.find(params[:id])
   end
 
-  def render_not_found_response
-    render json: { error: "User not found" }, status: :not_found
-  end
+  # Draft method deletion:
+  # def render_not_found_response
+  #   render json: { error: "User not found" }, status: :not_found
+  # end
 
   def render_unprocessable_entity_response(exception)
     render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity

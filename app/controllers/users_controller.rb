@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+  skip_before_action :authorize, only: :create # <-Drafted line from Fn example
 
   def index
     render json: User.order("id")
@@ -8,7 +9,8 @@ class UsersController < ApplicationController
 
   def show
     user = find_user
-    render json: user, serializer: UserWithTodosSerializer
+    # Drafted modfication of line below from Flatiron example:
+    render json: @current_user, serializer: UserWithTodosSerializer
   end
 
   def update
@@ -23,15 +25,18 @@ class UsersController < ApplicationController
     head :no_content
   end
   
+  # Drafted method from Flatiron example:
   def create
     user = User.create!(user_params)
+    session[:user_id] = user.id
     render json: user, status: :created
   end
 
   private
 
   def user_params
-    params.permit(:user_name)
+    # Drafted modfication of line below from Flatiron example:
+    params.permit(:user_name, :password, :password_confirmation)
   end
   
   def find_user

@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   # Draft method deletion:
   # def find_user
   #   User.find(params[:id])
-  end
+  # end
 
   # Draft method deletion:
   # def render_not_found_response

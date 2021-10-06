@@ -13,6 +13,10 @@ class UsersController < ApplicationController
   def show
     # Draft deletion -> user = find_user
     # Drafted modfication of line below from Flatiron example:
+    #
+    #
+    # @current_user below is probably needed for the sake of security
+    #  of other users from this user's account
     render json: @current_user, serializer: UserWithTodosSerializer
   end
 

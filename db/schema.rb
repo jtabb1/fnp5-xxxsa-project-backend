@@ -10,7 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_000003) do
+ActiveRecord::Schema.define(version: 2021_10_07_000006) do
+
+  create_table "common_todos", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "type_id", null: false
+    t.string "todo_name"
+    t.string "todo_notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["type_id"], name: "index_common_todos_on_type_id"
+    t.index ["user_id"], name: "index_common_todos_on_user_id"
+  end
+
+  create_table "starter_todos", force: :cascade do |t|
+    t.integer "starter_type_id", null: false
+    t.string "todo_name"
+    t.string "todo_notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["starter_type_id"], name: "index_starter_todos_on_starter_type_id"
+  end
+
+  create_table "starter_types", force: :cascade do |t|
+    t.string "type_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "todos", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -24,9 +50,11 @@ ActiveRecord::Schema.define(version: 2021_09_27_000003) do
   end
 
   create_table "types", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.string "type_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_types_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,6 +64,10 @@ ActiveRecord::Schema.define(version: 2021_09_27_000003) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "common_todos", "types"
+  add_foreign_key "common_todos", "users"
+  add_foreign_key "starter_todos", "starter_types"
   add_foreign_key "todos", "types"
   add_foreign_key "todos", "users"
+  add_foreign_key "types", "users"
 end

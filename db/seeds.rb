@@ -4,6 +4,12 @@ StarterType.destroy_all
 puts "🔥 Destroying starter todos..."
 StarterTodo.destroy_all
 
+puts "🔥 Destroying types..."
+Type.destroy_all
+
+puts "🔥 Destroying users..."
+User.destroy_all
+
 puts "🌱 Seeding starter types..."
 s_typex01 = StarterType.create!(type_name: 'coding')
 s_typex02 = StarterType.create!(type_name: 'eating')
@@ -18,5 +24,11 @@ StarterTodo.create!(starter_type_id: s_typex02.id, todo_name: "go to the store")
 StarterTodo.create!(starter_type_id: s_typex02.id, todo_name: "wash dishes")
 StarterTodo.create!(starter_type_id: s_typex02.id, todo_name: "take out the trash")
 StarterTodo.create!(starter_type_id: s_typex03.id, todo_name: "complete morning routine")
+
+puts "🌱 Seeding users..."
+userx01 = User.create!(username: 'FirstUser', password_digest: "1")
+
+puts "🌱 Seeding types..."
+typex01 = Type.create!(user_id: userx01.id, type_name: 'any')
 
 puts "✅ Done seeding!"

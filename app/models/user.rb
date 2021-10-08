@@ -13,6 +13,15 @@ class User < ApplicationRecord
 
   def self.create_with_starter_types_and_todos(args)
     user = User.create(args)
+    # puts StarterType.all.inspect
+    # puts StarterType.all
+    StarterType.all.each do |obj|
+      # puts obj.inspect
+      # puts obj
+      # puts obj.type_name
+      type = Type.create(user_id: user.id, type_name: obj.type_name)
+    end
+    user
   end
 
   validates :username, presence: true, uniqueness: true

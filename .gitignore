@@ -11,4 +11,4 @@ tmp
 *.swp
 
 db/*.db
-/db/*.sqlite3
+db/*.sqlite3

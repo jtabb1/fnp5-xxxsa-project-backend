@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :todos, only: [:index, :show, :update, :create, :destroy]
+  resources :common_todos, only: [:index]
   resources :types, only: [:index]
   resources :users, only: [:show, :create]
   # resources :users, only: [:index, :show, :create, :update, :destroy]

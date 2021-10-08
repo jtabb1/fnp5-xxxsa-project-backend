@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_000006) do
   create_table "common_todos", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "type_id", null: false
+    t.string "to_display"
     t.string "todo_name"
     t.string "todo_notes"
     t.datetime "created_at", precision: 6, null: false
@@ -25,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_000006) do
 
   create_table "starter_typed_todos", force: :cascade do |t|
     t.string "type_name"
+    t.string "to_display"
     t.string "todo_name"
     t.string "todo_notes"
     t.datetime "created_at", precision: 6, null: false

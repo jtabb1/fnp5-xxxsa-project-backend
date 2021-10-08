@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   
   # Drafted method from Flatiron example:
   def create
-    user = User.create!(user_params)
+    user = User.create_with_starter_types_and_todos(user_params)
     session[:user_id] = user.id
     render json: user, status: :created
   end

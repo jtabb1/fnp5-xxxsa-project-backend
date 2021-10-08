@@ -7,8 +7,12 @@ class User < ApplicationRecord
   #Draft modifications for auth below: 
   has_secure_password
 
-  def self.create_with_starter_types_and_todos(username, password, password_confirmation)
-    user = User.create(username: username, password: password, password_confirmation: password_confirmation)
+  # def self.create_with_starter_types_and_todos(username, password, password_confirmation)
+  #   user = User.create(username: username, password: password, password_confirmation: password_confirmation)
+  # end
+
+  def self.create_with_starter_types_and_todos(args)
+    user = User.create(args)
   end
 
   validates :username, presence: true, uniqueness: true

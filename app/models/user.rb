@@ -10,7 +10,8 @@ class User < ApplicationRecord
     user = User.create(args)
     StarterTypedTodo.all.each do |obj|
       type = Type.find_or_create_by(user_id: user.id, type_name: obj.type_name)
-      CommonTodo.find_or_create_by(user_id: user.id, type_id: type.id, todo_name: obj.todo_name, todo_notes: obj.todo_notes)
+      # There is an optimization opportunity here to eliminate the 'to_display' below and in the associated files of this project
+      CommonTodo.find_or_create_by(user_id: user.id, type_id: type.id, todo_name: obj.todo_name, todo_notes: obj.todo_notes, to_display: obj.to_display)
     end
     user
   end

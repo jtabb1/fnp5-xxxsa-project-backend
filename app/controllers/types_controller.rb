@@ -3,7 +3,7 @@ class TypesController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
   def index
-    render json: Type.all
+    render json: Type.where(user_id: @current_user.id)
   end
 
   def show

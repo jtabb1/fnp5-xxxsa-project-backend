@@ -23,17 +23,10 @@ ActiveRecord::Schema.define(version: 2021_10_07_000006) do
     t.index ["user_id"], name: "index_common_todos_on_user_id"
   end
 
-  create_table "starter_todos", force: :cascade do |t|
-    t.integer "starter_type_id", null: false
+  create_table "starter_typed_todos", force: :cascade do |t|
+    t.string "type_name"
     t.string "todo_name"
     t.string "todo_notes"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["starter_type_id"], name: "index_starter_todos_on_starter_type_id"
-  end
-
-  create_table "starter_types", force: :cascade do |t|
-    t.string "type_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -66,7 +59,6 @@ ActiveRecord::Schema.define(version: 2021_10_07_000006) do
 
   add_foreign_key "common_todos", "types"
   add_foreign_key "common_todos", "users"
-  add_foreign_key "starter_todos", "starter_types"
   add_foreign_key "todos", "types"
   add_foreign_key "todos", "users"
   add_foreign_key "types", "users"

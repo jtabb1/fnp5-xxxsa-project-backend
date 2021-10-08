@@ -15,11 +15,12 @@ class User < ApplicationRecord
     user = User.create(args)
     # puts StarterType.all.inspect
     # puts StarterType.all
-    StarterType.all.each do |obj|
+    StarterTypedTodo.all.each do |obj|
       # puts obj.inspect
       # puts obj
       # puts obj.type_name
-      type = Type.create(user_id: user.id, type_name: obj.type_name)
+      type = Type.find_or_create_by(user_id: user.id, type_name: obj.type_name)
+      CommonTodo.find_or_create_by(user_id: user.id, type_id: type.id, todo_name: obj.todo_name, todo_notes: obj.todo_notes)
     end
     user
   end

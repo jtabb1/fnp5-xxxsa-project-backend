@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
 
   # Draft line deletion:
   # rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response

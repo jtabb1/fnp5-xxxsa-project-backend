@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2021_10_07_000006) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "common_todos", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "type_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "type_id", null: false
     t.string "to_display"
     t.string "todo_name"
     t.string "todo_notes"
@@ -34,8 +37,8 @@ ActiveRecord::Schema.define(version: 2021_10_07_000006) do
   end
 
   create_table "todos", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "type_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "type_id", null: false
     t.string "todo_name"
     t.string "todo_notes"
     t.datetime "created_at", precision: 6, null: false
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_000006) do
   end
 
   create_table "types", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "type_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

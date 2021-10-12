@@ -1,14 +1,14 @@
 puts "🔥 Destroying starter todos..."
 StarterTypedTodo.destroy_all
 
-puts "🔥 Destroying todos..."
-Todo.destroy_all
+# puts "🔥 Destroying todos..."
+# Todo.destroy_all
 
-puts "🔥 Destroying types..."
-Type.destroy_all
+# puts "🔥 Destroying types..."
+# Type.destroy_all
 
-puts "🔥 Destroying users..."
-User.destroy_all
+# puts "🔥 Destroying users..."
+# User.destroy_all
 
 puts "🌱 Seeding starter typed todos..."
 StarterTypedTodo.create!(type_name: "coding", to_display: "complete feature a on project (coding)", todo_name: "complete feature a on project")
